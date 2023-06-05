@@ -66,7 +66,8 @@ def UpgradeHub():
                 #Tell up to perform update
                 s.get(updateHubUrl)
             else:
-                SendEmail(emailServerSettings, "Hubitat Hub Upgrade - Not available", "No hub updates are available at this time.")
+                if(ToBool(config["GENERAL"]["sendNotificationOnNoUpdateAvailable"])):
+                    SendEmail(emailServerSettings, "Hubitat Hub Upgrade - Not available", "No hub updates are available at this time.")
 
         else:
             SendEmail(emailServerSettings, "Hubitat Hub Upgrade Failed", "Update check failed")
