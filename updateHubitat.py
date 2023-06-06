@@ -1,4 +1,5 @@
-import requests, json, smtplib, configparser
+import requests
+import json, smtplib, configparser
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
@@ -73,6 +74,9 @@ def UpgradeHub():
             SendEmail(emailServerSettings, "Hubitat Hub Upgrade Failed", "Update check failed")
     else:
         SendEmail(emailServerSettings, "Hubitat Hub Upgrade Failed", "Hubitat login failed")
+    
+    #Close the session
+    s.close()
 
 
 
